@@ -1,0 +1,40 @@
+# Dependencias (se reinstalan con "npm install")
+node_modules/
+
+# Compilación / resultados de build
+dist/
+dist-ssr/
+
+# Cachés
+.vite/
+.cache/
+coverage/
+
+# Secretos y variables de entorno
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+!.vscode/extensions.json
+.idea/
+
+# Temporales
+*.local
+*.tmp
+
+# Notas internas del proyecto (no se publican)
+AGENTS.md

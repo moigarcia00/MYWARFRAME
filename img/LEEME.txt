@@ -1,0 +1,17 @@
+Esta carpeta es tu "public": todo lo que pongas aquí se sirve tal cual desde
+la raíz del sitio (configurado en vite.config.js con `publicDir: 'img'`).
+
+- img/logo.png              →  ya incluido: es el reverso de la carta
+                                giratoria (botón "↻ Ver carta giratoria"
+                                en el modal de detalle)
+- img/skins/Ash/Graxx.webp  →  se referencia como "/skins/Ash/Graxx.webp"
+                                en src/data/skins.js (skins de warframes)
+- img/skins/Braton/X.webp   →  se referencia como "/skins/Braton/X.webp"
+                                en src/data/weaponSkins.js (skins de armas)
+                                — usa subcarpetas por nombre de arma/warframe
+                                para no mezclar archivos entre ambas
+- img/helmets/Ash/Locust.webp → se referencia como "/helmets/Ash/Locust.webp"
+                                en src/data/helmets.js
+
+No hace falta importar nada ni tocar código: solo coloca el archivo aquí
+dentro y usa la ruta que empieza por "/" en el campo `img` correspondiente.

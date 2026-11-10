@@ -1,8 +1,18 @@
 # MyWarframe
 
-Tracker y coleccionable **fan, no oficial** de [Warframe](https://www.warframe.com/): consulta warframes, armas, mods, reliquias, compañeros, objetos y facciones, y lleva el control de lo que ya has obtenido.
+Página de coleccionables **fan, no oficial y sin ánimo de lucro** de [Warframe](https://www.warframe.com/): consulta warframes, armas, mods, reliquias, compañeros, objetos y facciones, y lleva el control de lo que ya has obtenido.
 
-> Proyecto personal sin ánimo de lucro, no afiliado a Digital Extremes.
+**Demo:** [my-warframe.vercel.app](https://my-warframe.vercel.app/)
+
+> Hecha de un Tenno para Tennos. No está afiliada ni respaldada por Digital Extremes.
+
+## ¿Qué es MyWarframe?
+
+MyWarframe nace como un proyecto personal de la comunidad para resolver algo sencillo: saber de un vistazo qué warframes, armas, mods y demás contenido tienes y cuál te falta. Es una especie de **álbum de coleccionables de Warframe** en el navegador: marcas lo que ya tienes, ves tu progreso y guardas tu colección sin crear ninguna cuenta.
+
+- **Para Tennos**: pensada por y para jugadores de Warframe, sin publicidad ni ánimo de lucro.
+- **Sin registros**: todo se guarda en tu propio navegador.
+- **En español**: con los nombres y descripciones traducidos siempre que la fuente lo permite.
 
 ## Características
 
@@ -65,10 +75,10 @@ scripts/       Scripts de generación de datos
 
 ## Datos y créditos
 
-- Los datos provienen de la API pública de **WFCD**: [api.warframestat.us](https://api.warframestat.us).
-- Proyectos de WFCD utilizados: [warframe-items](https://github.com/WFCD/warframe-items) y [warframestat](https://github.com/WFCD/warframestat), publicados bajo licencia **MIT**.
-- **Warframe** y todas sus imágenes, nombres y datos son propiedad de **Digital Extremes Ltd.** Este proyecto es una creación fan sin ánimo de lucro y no está afiliado ni respaldado por Digital Extremes.
-- Las imágenes se enlazan desde el CDN de WFCD siempre que es posible; no se reclama su propiedad.
+- **Datos**: provienen de la API pública de **WFCD**: [api.warframestat.us](https://api.warframestat.us). Los proyectos [warframe-items](https://github.com/WFCD/warframe-items) y [warframestat](https://github.com/WFCD/warframestat) se publican bajo licencia **MIT**, que cubre su código y sus datos, **no las imágenes**.
+- **Imágenes**: son recursos del juego **Warframe** y pertenecen a **Digital Extremes Ltd.** No son propiedad de este proyecto ni del repositorio de WFCD, que solo las aloja y sirve. La app se limita a enlazarlas, principalmente desde el CDN de WFCD (`cdn.warframestat.us`); cuando no hay una disponible, usa como respaldo imágenes de la [Warframe Wiki](https://wiki.warframe.com/) (Fandom). No se reclama su propiedad ni se lucra con ellas.
+- **Logo**: el logo del proyecto es una creación propia y no reproduce ningún emblema oficial de Warframe.
+- **Warframe** y todos sus nombres, personajes, imágenes y datos son propiedad de Digital Extremes Ltd.
 
 ## Aviso legal
 

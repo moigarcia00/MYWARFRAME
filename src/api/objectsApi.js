@@ -19,7 +19,7 @@ import {
   imageUrl as sharedImageUrl
 } from './apiCore';
 
-const CACHE = makeCache('mywarframe_objects_cache_v4', 1000 * 60 * 60 * 12); // 12 horas
+const CACHE = makeCache('mywarframe_objects_cache_v5', 1000 * 60 * 60 * 12); // 12 horas
 
 const TEXT_FIELDS = ['description'];
 
@@ -37,7 +37,9 @@ const EXCLUDED_CATEGORIES = new Set([
   'SENTINELS',
   'PETS',
   'COMPANIONS',
-  'RELICS'
+  'RELICS',
+  // Los enemigos se registran a mano en la pestaña Facciones, no aquí.
+  'ENEMY'
 ]);
 
 const EXCLUDED_TYPE_HINTS = ['RIVEN', 'SENTINEL', 'KUBROW', 'KAVAT', 'MOA', 'PREDASITE', 'VULPAPHYLA'];

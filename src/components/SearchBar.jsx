@@ -5,7 +5,14 @@ export default function SearchBar({
   onSetFiltro,
   placeholder = 'Buscar...',
   showMasteryFilter = false,
-  showHelminthFilter = false
+  showHelminthFilter = false,
+  obtainedLabel = '✓ Solo obtenidos',
+  notObtainedLabel = '○ Solo no obtenidos',
+  obtainedValue = 'obtenidos',
+  notObtainedValue = 'no-obtenidos',
+  obtainedTitle = 'Mostrar solo los que están marcados como obtenidos',
+  notObtainedTitle = 'Mostrar solo los que aún no tienes',
+  children
 }) {
   return (
     <div className="search-row">
@@ -26,20 +33,20 @@ export default function SearchBar({
 
       <button
         type="button"
-        className={`filter-obtenidos ${filtroColeccion === 'obtenidos' ? 'active' : ''}`}
-        onClick={() => onSetFiltro(filtroColeccion === 'obtenidos' ? 'todos' : 'obtenidos')}
-        title="Mostrar solo los que están marcados como obtenidos"
+        className={`filter-obtenidos ${filtroColeccion === obtainedValue ? 'active' : ''}`}
+        onClick={() => onSetFiltro(filtroColeccion === obtainedValue ? 'todos' : obtainedValue)}
+        title={obtainedTitle}
       >
-        ✓ Solo obtenidos
+        {obtainedLabel}
       </button>
 
       <button
         type="button"
-        className={`filter-no-obtenidos ${filtroColeccion === 'no-obtenidos' ? 'active' : ''}`}
-        onClick={() => onSetFiltro(filtroColeccion === 'no-obtenidos' ? 'todos' : 'no-obtenidos')}
-        title="Mostrar solo los que aún no tienes"
+        className={`filter-no-obtenidos ${filtroColeccion === notObtainedValue ? 'active' : ''}`}
+        onClick={() => onSetFiltro(filtroColeccion === notObtainedValue ? 'todos' : notObtainedValue)}
+        title={notObtainedTitle}
       >
-        ○ Solo no obtenidos
+        {notObtainedLabel}
       </button>
 
       {showMasteryFilter && (
@@ -63,6 +70,8 @@ export default function SearchBar({
           🧬 Helminto
         </button>
       )}
+
+      {children}
     </div>
   );
 }

@@ -22,7 +22,8 @@ export const STORAGE_KEYS = {
   companionSkinsObtenidas: 'companion_skins_obtenidas',
   companionArmadurasObtenidas: 'companion_armaduras_obtenidas',
   objetoCantidades: 'objeto_cantidades',
-  faccionEnemigos: 'faccion_enemigos'
+  faccionEnemigos: 'faccion_enemigos',
+  faccionEnemigosEscaneados: 'faccion_enemigos_escaneados'
 };
 
 export const BACKUP_KEYS = Object.values(STORAGE_KEYS);

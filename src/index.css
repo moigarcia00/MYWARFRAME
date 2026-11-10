@@ -162,6 +162,18 @@ header h1 {
 .filter-maestria:hover  { color: var(--prime); border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.06); }
 .filter-maestria.active { color: #1a1200; background: var(--prime); border-color: var(--prime); }
 
+.filter-add {
+  flex-shrink: 0;
+  padding: 0 1rem;
+  font-family: 'Orbitron', monospace; font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--energy); background: rgba(0,229,255,0.08);
+  border: 1px solid var(--energy-dim); border-radius: 4px;
+  cursor: pointer; white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.filter-add:hover { color: #06120a; background: var(--energy); border-color: var(--energy); }
+
 /* ── ALPHABET NAV ── */
 .alpha-nav {
   position: sticky; top: 0; z-index: 50; margin-top: 1.5rem;
@@ -359,32 +371,14 @@ select option { color: #111; background-color: #fff; }
 .riven-save:hover { background: #b06bcf; }
 
 /* ══════════════════════════════════════════
-   FACCIONES — registro manual de enemigos
+   FACCIONES — enemigos
 ══════════════════════════════════════════ */
-.enemy-card {
-  background: linear-gradient(160deg, rgba(90,20,20,0.3) 0%, rgba(6,6,16,0.85) 100%);
-  border: 1px solid rgba(220,80,80,0.3); border-radius: 6px;
-  padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem;
-  transition: border-color 0.2s, box-shadow 0.2s, opacity 0.2s;
-  opacity: 0.75;
+.personaje .enemy-card-faccion {
+  padding: 0 0.5rem 0.25rem;
+  font-size: 0.68rem; letter-spacing: 0.04em; text-align: center;
+  text-transform: uppercase; color: var(--muted);
 }
-.enemy-card.escaneado { opacity: 1; border-color: rgba(111,227,163,0.4); }
-.enemy-card:hover { border-color: #dc5050; box-shadow: 0 0 20px rgba(220,80,80,0.15); }
-.enemy-card.escaneado:hover { border-color: #6fe3a3; box-shadow: 0 0 20px rgba(111,227,163,0.2); }
-
-.enemy-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; }
-.enemy-card-nombre { font-weight: 700; color: var(--star); font-size: 1rem; }
-.enemy-card-faccion { font-size: 0.8rem; color: var(--muted); }
-.enemy-card-notas { font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
-
-.enemy-scan-toggle {
-  flex-shrink: 0; font-family: 'Orbitron', monospace; font-size: 0.55rem; letter-spacing: 0.04em;
-  text-transform: uppercase; padding: 0.35rem 0.6rem; border-radius: 3px; cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); color: var(--muted);
-  white-space: nowrap; transition: color 0.2s, border-color 0.2s, background 0.2s;
-}
-.enemy-scan-toggle:hover { border-color: rgba(220,80,80,0.5); color: #dc5050; }
-.enemy-scan-toggle.on { color: #6fe3a3; border-color: #6fe3a3; background: rgba(111,227,163,0.1); }
+.enemy-card-actions { justify-content: center; margin: 0 0.5rem 0.5rem; }
 
 .enemy-notas-label {
   display: flex; flex-direction: column; gap: 0.3rem;
@@ -409,8 +403,6 @@ select option { color: #111; background-color: #fff; }
   width: 80px; height: 80px; object-fit: cover; border-radius: 4px;
   border: 1px solid rgba(220,80,80,0.3);
 }
-.enemy-card-img-wrap { width: 100%; height: 130px; border-radius: 4px; overflow: hidden; background: rgba(255,255,255,0.02); }
-.enemy-card-img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ══════════════════════════════════════════
    RELIQUIAS

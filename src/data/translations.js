@@ -184,6 +184,28 @@ export function statLabel(key) {
   return STAT_LABELS[key] || key;
 }
 
+// Tipos de salud/armadura/escudo que aparecen en las resistencias de los
+// enemigos de la API (suelen venir en inglés).
+export const RESISTANCE_TYPE_ES = {
+  Shield: 'Escudo',
+  'Proto Shield': 'Protocasco',
+  'Ferrite Armor': 'Blindaje de ferrita',
+  'Alloy Armor': 'Blindaje de aleación',
+  Flesh: 'Carne',
+  'Cloned Flesh': 'Carne clonada',
+  Robotic: 'Robótico',
+  Machinery: 'Maquinaria',
+  Infested: 'Infestado',
+  'Infested Flesh': 'Carne infestada',
+  Fossilized: 'Fosilizado',
+  'Infested Sinew': 'Tendón infestado',
+  Object: 'Objeto'
+};
+
+export function resistanceTypeLabel(type) {
+  return RESISTANCE_TYPE_ES[type] || type;
+}
+
 // ── Rango de maestría máximo ──
 // La mayoría de warframes/armas se forjan hasta rango 30, pero las armas
 // Kuva/Tenet/Coda y los Necramechs (Voidrig, Bonewidow...) llegan a 40.

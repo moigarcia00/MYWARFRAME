@@ -1,37 +1,79 @@
-export default function EnemyCard({ enemy, onToggle, onEdit, onDelete }) {
+import SmartImage from './SmartImage';
+
+export default function EnemyCard({ enemy, onToggle, onMostrar, onEdit, onDelete }) {
+  const escaneado = !!enemy.escaneado;
+
   return (
-    <div className={`enemy-card ${enemy.escaneado ? 'escaneado' : ''}`}>
-      {enemy.imagenUrl && (
-        <div className="enemy-card-img-wrap">
-          <img src={enemy.imagenUrl} alt={enemy.nombre} className="enemy-card-img" />
+    <div
+      className={`personaje ${escaneado ? 'desbloqueado' : ''}`}
+      onClick={() => onMostrar(enemy)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && onMostrar(enemy)}
+    >
+      <span className="card-badge">{escaneado ? '✓' : '○'}</span>
+
+      <div className="card-img">
+        <SmartImage
+          src={enemy.imagenUrl}
+          alt={enemy.nombre}
+          className="img-principal"
+          placeholder="☠"
+          placeholderClassName="placeholder"
+        />
+      </div>
+
+      <div className="nombre">{enemy.nombre || 'Enemigo sin nombre'}</div>
+      <div className="enemy-card-faccion">{enemy.faccion || 'Sin facción'}</div>
+
+      <button
+        type="button"
+        className="btn-mostrar"
+        onClick={(e) => {
+          e.stopPropagation();
+          onMostrar(enemy);
+        }}
+      >
+        Mostrar
+      </button>
+
+      <button
+        type="button"
+        className={`skin-btn helminto-btn ${escaneado ? 'helminto-on' : ''}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          onToggle(enemy);
+        }}
+        title={escaneado ? 'Marcado como escaneado' : 'Marcar como escaneado'}
+      >
+        <span>◎ Escaneado</span>
+        <span className="helminto-check">{escaneado ? '✓' : '○'}</span>
+      </button>
+
+      {enemy.manual && (
+        <div className="riven-card-actions enemy-card-actions">
+          <button
+            type="button"
+            className="riven-edit"
+            onClick={(e) => {
+              e.stopPropagation();
+              onEdit(enemy);
+            }}
+          >
+            Editar
+          </button>
+          <button
+            type="button"
+            className="riven-delete"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(enemy.id);
+            }}
+          >
+            Eliminar
+          </button>
         </div>
       )}
-
-      <div className="enemy-card-top">
-        <div>
-          <div className="enemy-card-nombre">{enemy.nombre || 'Enemigo sin nombre'}</div>
-          <div className="enemy-card-faccion">{enemy.faccion || 'Facción sin especificar'}</div>
-        </div>
-        <button
-          type="button"
-          className={`enemy-scan-toggle ${enemy.escaneado ? 'on' : ''}`}
-          onClick={() => onToggle(enemy.id)}
-          title={enemy.escaneado ? 'Marcado como escaneado' : 'Marcar como escaneado'}
-        >
-          {enemy.escaneado ? '✓ Escaneado' : '○ Sin escanear'}
-        </button>
-      </div>
-
-      {enemy.notas && <p className="enemy-card-notas">{enemy.notas}</p>}
-
-      <div className="riven-card-actions">
-        <button type="button" className="riven-edit" onClick={() => onEdit(enemy)}>
-          Editar
-        </button>
-        <button type="button" className="riven-delete" onClick={() => onDelete(enemy.id)}>
-          Eliminar
-        </button>
-      </div>
     </div>
   );
 }

@@ -13,8 +13,9 @@
 // ══════════════════════════════════════════════════════════
 import { http, makeCache, dedupeRequest } from './apiCore';
 import { REQUIEM_RELICS } from '../data/requiemRelics';
+import { formatRewardName } from '../utils/relicRewards';
 
-const CACHE = makeCache('mywarframe_relics_cache_v2', 1000 * 60 * 60 * 12); // 12 horas
+const CACHE = makeCache('mywarframe_relics_cache_v3', 1000 * 60 * 60 * 12); // 12 horas
 
 // Tablas de probabilidad estándar del juego (públicas, iguales para
 // cualquier reliquia normal): 3 recompensas comunes, 2 poco comunes, 1
@@ -53,7 +54,11 @@ function rewardsFromEntry(entry) {
   Object.keys(entry).forEach((key) => {
     const match = key.match(/^(rare|uncommon|common)(\d+)$/i);
     if (match && entry[key]) {
-      rewards.push({ rarity: match[1].toLowerCase(), item: entry[key] });
+      rewards.push({
+        rarity: match[1].toLowerCase(),
+        item: formatRewardName(entry[key]),
+        itemEn: entry[key]
+      });
     }
   });
   const order = { rare: 0, uncommon: 1, common: 2 };
@@ -131,5 +136,11 @@ export function clearRelicsCache() {
 export function relicsContaining(relics, itemName) {
   if (!itemName) return [];
   const term = String(itemName).trim().toLowerCase();
-  return relics.filter((r) => r.rewards.some((rw) => String(rw.item).trim().toLowerCase() === term));
+  return relics.filter((r) =>
+    r.rewards.some(
+      (rw) =>
+        String(rw.item || '').trim().toLowerCase() === term ||
+        String(rw.itemEn || '').trim().toLowerCase() === term
+    )
+  );
 }

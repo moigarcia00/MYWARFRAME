@@ -47,7 +47,7 @@ export default function ReliquiasPage({ activeTab, onSelectTab }) {
       list = list.filter(
         (r) =>
           normalize(r.name).includes(term) ||
-          r.rewards.some((rw) => normalize(rw.item).includes(term))
+          r.rewards.some((rw) => normalize(rw.item).includes(term) || normalize(rw.itemEn).includes(term))
       );
     }
     return list;

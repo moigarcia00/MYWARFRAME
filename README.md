@@ -69,7 +69,7 @@ El backend vive en `backend/` y está en desarrollo. Instrucciones detalladas en
 
 ```bash
 cd backend
-python -m venv venv
+py -m venv venv
 # Windows PowerShell: .\venv\Scripts\Activate.ps1
 # Git Bash: source venv/Scripts/activate
 pip install -r requirements.txt

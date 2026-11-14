@@ -6,14 +6,15 @@ automática funciona.
 
 ## Requisitos
 
-- Python 3.10 o superior
+- Python 3.10 o superior (probado con 3.14.7)
 - pip
+- PostgreSQL 18 en local (opcional para `/health`, necesario para guardar datos)
 
 ## Puesta en marcha en Windows (PowerShell)
 
 ```powershell
 cd backend
-python -m venv venv
+py -m venv venv
 .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 uvicorn app.main:app --reload
@@ -23,11 +24,14 @@ uvicorn app.main:app --reload
 
 ```bash
 cd backend
-python -m venv venv
+py -m venv venv
 source venv/Scripts/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
+
+Si `venv` ya existe, puedes saltarte la creación e instalación y arrancar
+directamente con `uvicorn app.main:app --reload`.
 
 Con el servidor arrancado:
 
@@ -45,6 +49,16 @@ cp .env.example .env
 
 `CORS_ORIGINS` es una lista separada por comas con las URLs que pueden llamar
 al backend (el frontend local y el de Vercel).
+
+`DATABASE_URL` es la conexión a PostgreSQL. En local, con el usuario `postgres`
+y la base `mywarframes`:
+
+```bash
+DATABASE_URL=postgresql+asyncpg://postgres:TU_CONTRASENA@localhost:5432/mywarframes
+```
+
+Sustituye `TU_CONTRASENA` por tu contraseña. El archivo `.env` no se sube a
+GitHub.
 
 ## Estructura
 

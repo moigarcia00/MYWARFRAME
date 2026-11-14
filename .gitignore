@@ -38,3 +38,15 @@ desktop.ini
 
 # Notas internas del proyecto (no se publican)
 AGENTS.md
+
+# Python / backend
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.db
+*.sqlite3
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

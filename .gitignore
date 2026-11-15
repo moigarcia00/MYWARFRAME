@@ -50,3 +50,6 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+
+# Estado local del comparador de WFCD (cambia en cada ejecución)
+backend/scripts/data/wfcd_snapshot.json

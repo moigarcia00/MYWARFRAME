@@ -1,19 +1,23 @@
 /* ══════════════════════════════════════════════════════
-   SKINS.JS — lista de skins por warframe (rellenar a mano)
+   SKINS.JS — lista de skins por warframe (catálogo manual)
    ══════════════════════════════════════════════════════
 
+   Este catálogo es temporal: cuando `WarframesPage` pida las skins al
+   backend (`GET /cosmetics/{warframe}`), los nombres y las imágenes
+   vendrán de la base de datos y este archivo se podrá borrar.
+
    Cómo rellenar cada entrada:
-     { nombre: "Graxx", img: "/skins/Ash/AshGraxx.webp", desc: "..." }
+     { nombre: "Graxx", img: "https://.../AshGraxx.webp", desc: "..." }
 
    - nombre : ya viene puesto, no lo toques (es el que se muestra en el selector).
-   - img    : ruta a la imagen de la skin. Puedes usar:
-                · un archivo dentro de la carpeta img/skins/... del proyecto
-                  (raíz del proyecto, al lado de src/), ej: si guardas el
-                  archivo en img/skins/Ash/AshGraxx.webp, aquí pones
-                  "/skins/Ash/AshGraxx.webp" (sin "img/" delante — Vite ya
-                  sirve esa carpeta como raíz, ver vite.config.js → publicDir)
-                · una URL externa completa, ej: "https://tu-cdn.com/AshGraxx.webp"
-              Si la dejas en "", la tarjeta muestra un icono de placeholder (🎨).
+   - img    : URL completa de la imagen de la skin. Puedes usar:
+                · el CDN de WFCD o cualquier URL externa;
+                · la URL que devuelva el backend FastAPI cuando sirva las
+                  imágenes (campo `image` del endpoint de cosméticos).
+              Ya no se usan carpetas locales `img/skins/`: se borraron y las
+              imágenes pasarán al backend. Si la dejas en "", el selector
+              muestra el icono de placeholder y la tarjeta usa la imagen base
+              del warframe como respaldo.
    - desc   : descripción en español que se muestra en el panel de detalle
               al elegir esa skin. Si la dejas en "", se usa un texto genérico.
 
@@ -23,7 +27,7 @@
    Las claves de este objeto son el NOMBRE exacto que devuelve la API
    (item.name, ej: "Ash Prime"), no el id interno. Así se enlaza solo con
    cada tarjeta sin tener que tocar el código de los componentes.
-*/
+ */
 
 export const SKINS = {
   "Ash": [

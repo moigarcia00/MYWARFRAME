@@ -18,14 +18,19 @@ class Cosmetic(Base):
     __tablename__ = "cosmetics"
     __table_args__ = (
         CheckConstraint("kind IN ('skin', 'helmet')", name="cosmetics_kind_check"),
-        UniqueConstraint("warframe", "kind", "name", name="cosmetics_unique"),
+        CheckConstraint(
+            "variant IN ('shared', 'base', 'prime', 'umbra')",
+            name="cosmetics_variant_check",
+        ),
+        UniqueConstraint("family_key", "variant", "kind", "name", name="cosmetics_unique"),
     )
 
     id: Mapped[int] = mapped_column(BigInteger, Identity(always=True), primary_key=True)
-    warframe: Mapped[str] = mapped_column(Text)
-    warframe_unique_name: Mapped[str | None] = mapped_column(Text)
+    family_key: Mapped[str] = mapped_column(Text, index=True)
+    variant: Mapped[str] = mapped_column(Text, default="shared")
     kind: Mapped[str] = mapped_column(Text)
     name: Mapped[str] = mapped_column(Text)
+    unique_name: Mapped[str | None] = mapped_column(Text, index=True)
     image_local: Mapped[str | None] = mapped_column(Text)
     image_cdn: Mapped[str | None] = mapped_column(Text)
     description: Mapped[str] = mapped_column(Text, default="")

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.routes import health
+from app.api.routes import cosmetics, health
 from app.core.config import settings
 
 app = FastAPI(title="MyWarframe API", version="0.1.0")
@@ -15,6 +15,7 @@ app.add_middleware(
 )
 
 app.include_router(health.router)
+app.include_router(cosmetics.router)
 
 
 @app.get("/")

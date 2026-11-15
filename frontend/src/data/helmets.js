@@ -1,9 +1,13 @@
 /* ══════════════════════════════════════════════════════
-   HELMETS.JS — lista de helmets por warframe (rellenar a mano)
+   HELMETS.JS — lista de helmets por warframe (catálogo manual)
    ══════════════════════════════════════════════════════
 
    Mismo formato que skins.js:
-     { nombre: "Locust Helmet", img: "/helmets/Ash/AshLocust.webp", desc: "" }
+     { nombre: "Locust Helmet", img: "https://.../AshLocust.webp", desc: "" }
+
+   Catálogo temporal: cuando el frontend pida los cosméticos al backend
+   (`GET /cosmetics/{warframe}`), los nombres y las imágenes vendrán de la
+   base de datos y este archivo se podrá borrar.
 
    Solo se incluyen aquí los warframes que ya tenían nombres reales de
    helmet en tu helmets.js original (Ash, Atlas, Banshee, Baruuk, Caliban,
@@ -15,10 +19,11 @@
 
    Las claves son el NOMBRE exacto que devuelve la API (item.name).
 
-   img: pon el archivo en img/helmets/Ash/AshLocust.webp (raíz del proyecto,
-   al lado de src/) y aquí escribe "/helmets/Ash/AshLocust.webp" — Vite
-   sirve esa carpeta como raíz (ver vite.config.js → publicDir: 'img').
-*/
+   img: URL completa de la imagen (CDN, hosting propio o la que devuelva
+   el backend FastAPI). Ya no se usa la carpeta local `img/helmets/`: se
+   borró y las imágenes pasarán al backend. Si la dejas en "", se muestra
+   el icono de placeholder.
+ */
 
 export const HELMETS = {
   "Ash": [

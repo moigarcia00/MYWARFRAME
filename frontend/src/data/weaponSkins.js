@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════
-   WEAPONSKINS.JS — lista de skins por arma (rellenar a mano)
+   WEAPONSKINS.JS — lista de skins por arma (catálogo manual)
    ══════════════════════════════════════════════════════
 
    Mismo formato que src/data/skins.js (warframes):
@@ -10,11 +10,10 @@
      ],
 
    - nombre : se muestra en el selector.
-   - img    : ruta dentro de img/skins/... (raíz del proyecto, al lado de
-              src/) → aquí se referencia sin el prefijo "img/", ej. si el
-              archivo vive en img/skins/Braton/Prisma.webp, pones
-              "/skins/Braton/Prisma.webp". También vale una URL externa.
-              Si la dejas en "", se ve un icono de placeholder.
+   - img    : URL completa de la imagen (CDN, hosting propio o la que
+              devuelva el backend FastAPI). Ya no se usan carpetas locales
+              `img/skins/`: se borraron y las imágenes pasarán al backend.
+              Si la dejas en "", se ve el icono de placeholder.
    - desc   : descripción en español para el panel de detalle. Si la dejas
               en "", se usa la descripción del arma base.
 
@@ -22,6 +21,8 @@
    Este archivo empieza vacío: no tenía el listado original de skins de
    armas (solo el de warframes), así que ve añadiendo aquí las que
    quieras — no hace falta tocar ningún componente para que aparezcan.
-*/
+   Cuando el backend normalice las skins de armas, este catálogo podrá
+   sustituirse por la respuesta de la API.
+ */
 
 export const SKINS = {};

@@ -624,7 +624,8 @@ main { position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; paddi
 .helmet-btn:hover { border-color: #7c6fd6; color: #a99cf0; background: rgba(124,111,214,0.08); }
 
 .helminto-btn:hover { border-color: #6fe3a3; color: #6fe3a3; background: rgba(111,227,163,0.08); }
-.helminto-btn.helminto-on { border-color: #6fe3a3; color: #6fe3a3; background: rgba(111,227,163,0.1); }
+.personaje .skin-btn.helminto-on,
+.personaje .skin-btn.helminto-on:hover { border-color: #6fe3a3; color: #6fe3a3; background: rgba(111,227,163,0.1); }
 .helminto-check { font-weight: 700; }
 
 /* ══════════════════════════════════════════
@@ -1074,12 +1075,25 @@ footer {
   .personaje.prime .btn-mostrar:hover {
     background: rgba(201,168,76,0.06); border-color: var(--prime-dim);
   }
+  .btn-mostrar:active, .personaje .btn-mostrar:active {
+    background: rgba(0,229,255,0.16); border-color: var(--energy); transform: scale(0.97);
+  }
+  .personaje.prime .btn-mostrar:active {
+    background: rgba(201,168,76,0.16); border-color: var(--prime);
+  }
   .skin-btn:hover, .personaje.prime .skin-btn:hover, .helmet-btn:hover {
     color: var(--muted); background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1);
   }
-  .helminto-btn.helminto-on,
-  .helminto-btn.helminto-on:hover {
+  .personaje .skin-btn.helminto-on,
+  .personaje .skin-btn.helminto-on:hover {
     color: #6fe3a3; border-color: #6fe3a3; background: rgba(111,227,163,0.1);
+  }
+  .skin-btn:active, .helmet-btn:active {
+    color: var(--energy); border-color: var(--energy); background: rgba(0,229,255,0.16);
+    transform: scale(0.98);
+  }
+  .personaje .skin-btn.helminto-on:active {
+    color: #6fe3a3; border-color: #6fe3a3; background: rgba(111,227,163,0.18);
   }
 
   .filter-obtenidos:hover { color: var(--muted); background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.12); }

@@ -1019,7 +1019,8 @@ footer {
 
   .personaje .btn-mostrar { font-size: 0.55rem; padding: 0.45rem 0.4rem; }
   .skin-btn { font-size: 0.5rem; padding: 0.4rem 0.45rem; }
-  .skin-btn-nombre, .helmet-btn-nombre { font-size: 0.65rem; max-width: none; }
+  .skin-btn:not(.helminto-btn) { justify-content: center; }
+  .skin-btn-nombre, .helmet-btn-nombre { display: none; }
 
   .modal-overlay { padding: 0.5rem; align-items: flex-start; }
   .modal-wrap { padding: 1rem; max-height: calc(100dvh - 1rem); border-radius: 8px; }
@@ -1028,8 +1029,11 @@ footer {
   .modal-card-frame { height: 260px; }
 
   .relic-qty-grid { grid-template-columns: 1fr 1fr; }
-  .info-panel { overflow-x: auto; }
-  .relic-rewards-table { min-width: 320px; }
+  .info-panel { padding: 0.6rem 0.65rem; }
+  .relic-rewards-table { font-size: 0.72rem; }
+  .relic-rewards-table th { font-size: 0.45rem; padding: 0.25rem 0.1rem; }
+  .relic-rewards-table td { padding: 0.3rem 0.1rem; }
+  .relic-rewards-table td:first-child { gap: 0.25rem; }
 
   .riven-form-row { flex-direction: column; }
   .riven-form-row label { min-width: 0; }
@@ -1040,4 +1044,61 @@ footer {
   .pagination { gap: 0.6rem; padding: 1.5rem 0.5rem 0.5rem; }
   .page-numbers { gap: 0.35rem; justify-content: center; }
   .page-btn { font-size: 0.55rem; padding: 0.5rem 0.65rem; }
+}
+
+@media (hover: none) {
+  * { -webkit-tap-highlight-color: transparent; }
+
+  .personaje:not(.desbloqueado):hover {
+    opacity: 0.42; transform: none; border-color: rgba(0,229,255,0.08);
+  }
+  .personaje.desbloqueado:hover {
+    transform: none; box-shadow: none; border-color: rgba(0,229,255,0.25);
+  }
+  .personaje.prime.desbloqueado:hover { border-color: rgba(201,168,76,0.25); }
+  .personaje.desbloqueado:hover::before { opacity: 0; }
+  .personaje:not(.desbloqueado):hover img.img-principal {
+    filter: grayscale(100%) brightness(0.5);
+  }
+  .personaje.desbloqueado:hover img.img-principal {
+    filter: grayscale(0%) drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+    transform: scale(1.04);
+  }
+  .personaje.prime.desbloqueado:hover img.img-principal {
+    filter: grayscale(0%) drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  }
+
+  .btn-mostrar:hover, .personaje .btn-mostrar:hover {
+    background: rgba(0,229,255,0.06); border-color: var(--energy-dim); transform: none;
+  }
+  .personaje.prime .btn-mostrar:hover {
+    background: rgba(201,168,76,0.06); border-color: var(--prime-dim);
+  }
+  .skin-btn:hover, .personaje.prime .skin-btn:hover, .helmet-btn:hover {
+    color: var(--muted); background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1);
+  }
+  .helminto-btn.helminto-on,
+  .helminto-btn.helminto-on:hover {
+    color: #6fe3a3; border-color: #6fe3a3; background: rgba(111,227,163,0.1);
+  }
+
+  .filter-obtenidos:hover { color: var(--muted); background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.12); }
+  .filter-no-obtenidos:hover { color: var(--muted); background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.12); }
+  .filter-maestria:hover { color: var(--muted); background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.12); }
+  .filter-add:hover { color: var(--energy); background: rgba(0,229,255,0.08); border-color: var(--energy-dim); }
+  .filter-obtenidos.active:hover { color: #06120a; background: #2ecc71; border-color: #2ecc71; }
+  .filter-no-obtenidos.active:hover { color: #fff; background: var(--danger); border-color: var(--danger); }
+  .filter-maestria.active:hover { color: #1a1200; background: var(--prime); border-color: var(--prime); }
+
+  .category-tab:hover { color: var(--muted); background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1); }
+  .category-tab.active:hover { color: var(--energy); border-color: var(--energy); background: rgba(0,229,255,0.1); }
+  .alpha-nav a:hover { color: var(--muted); border-color: transparent; background: transparent; }
+  .alpha-nav a.active:hover { color: var(--energy); border-color: var(--energy-dim); background: rgba(0,229,255,0.06); }
+  .alpha-nav a[data-letter="*"]:hover { color: var(--prime); border-color: rgba(201,168,76,0.3); background: transparent; }
+  .alpha-nav a[data-letter="*"].active:hover { color: var(--prime); border-color: var(--prime); background: rgba(201,168,76,0.1); }
+
+  .backup-trigger:hover, .footer-refresh:hover, .page-btn:hover:not(:disabled),
+  .btn-flip3d:hover, .riven-edit:hover, .riven-delete:hover, .riven-save:hover,
+  .riven-stat-add:hover, .qty-btn:hover, .maestria-btn:hover { transform: none; }
+  .page-btn.active:hover { color: var(--energy); border-color: var(--energy); background: rgba(0,229,255,0.1); }
 }

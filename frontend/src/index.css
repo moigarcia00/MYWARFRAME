@@ -958,6 +958,86 @@ footer {
 ::-webkit-scrollbar-thumb { background: var(--energy-dim); border-radius: 3px; }
 
 @media (max-width: 600px) {
-  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
-  .tab-nav { flex-wrap: wrap; }
+  header { padding: 2rem 0.75rem 1.2rem; }
+  header h1 { font-size: clamp(1.8rem, 8.5vw, 2.6rem); letter-spacing: 0.04em; }
+  .header-eyebrow { font-size: 0.55rem; letter-spacing: 0.25em; }
+  .subtitle { font-size: 0.85rem; }
+
+  .tab-nav { gap: 0.3rem; padding: 0.25rem; max-width: 100%; }
+  .tab-btn { font-size: 0.58rem; padding: 0.55rem 0.65rem; letter-spacing: 0.06em; }
+  .tab-icon { font-size: 0.8rem; }
+
+  .header-counter-row { flex-wrap: wrap; gap: 0.5rem; padding: 0 0.25rem; }
+  #contador { font-size: 0.55rem; letter-spacing: 0.08em; padding: 0.35rem 0.7rem; }
+
+  main { padding: 1rem 0.6rem 3rem; }
+  .controls-wrap { padding: 0 0.6rem; margin-top: 1rem; }
+
+  .search-row { gap: 0.45rem; }
+  .search-wrap { flex: 1 1 100%; min-width: 0; }
+  .search-input { font-size: 16px; padding: 0.75rem 2.4rem 0.75rem 0.9rem; }
+  .filter-obtenidos, .filter-no-obtenidos, .filter-maestria, .filter-add {
+    flex: 1 1 calc(50% - 0.25rem);
+    padding: 0.7rem 0.4rem;
+    font-size: 0.55rem;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .alpha-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.35rem;
+    padding: 0.5rem 0.6rem;
+  }
+  .alpha-nav::-webkit-scrollbar { display: none; }
+  .alpha-nav a {
+    flex: 0 0 auto;
+    font-size: 0.75rem;
+    padding: 0.45rem 0.55rem;
+    min-width: 2rem;
+    text-align: center;
+  }
+  .alpha-nav a[data-letter="*"] { padding: 0.45rem 0.7rem; margin-right: 0.1rem; }
+
+  .category-tabs { padding: 0 0.6rem; gap: 0.4rem; }
+  .category-tab { font-size: 0.55rem; padding: 0.45rem 0.6rem; }
+
+  .cards-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; }
+  .relic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+  .card-img { height: 110px; }
+  .relic-icon-wrap { height: 90px; }
+  .nombre { font-size: 0.7rem; padding: 0.35rem 0.4rem 0.15rem; }
+  .qty-btn, .maestria-btn { width: 28px; height: 28px; }
+  .qty-input { font-size: 16px; width: 3rem; }
+  .card-badge { width: 20px; height: 20px; font-size: 0.6rem; }
+  .modal-close { width: 40px; height: 40px; font-size: 1.3rem; top: 0.6rem; right: 0.6rem; }
+  .letra-heading::before { font-size: 1.8rem; }
+
+  .personaje .btn-mostrar { font-size: 0.55rem; padding: 0.45rem 0.4rem; }
+  .skin-btn { font-size: 0.5rem; padding: 0.4rem 0.45rem; }
+  .skin-btn-nombre, .helmet-btn-nombre { font-size: 0.65rem; max-width: none; }
+
+  .modal-overlay { padding: 0.5rem; align-items: flex-start; }
+  .modal-wrap { padding: 1rem; max-height: calc(100dvh - 1rem); border-radius: 8px; }
+  .modal { padding: 1rem; width: 100%; max-height: calc(100dvh - 1rem); }
+  .modal-body { gap: 1rem; }
+  .modal-card-frame { height: 260px; }
+
+  .relic-qty-grid { grid-template-columns: 1fr 1fr; }
+  .info-panel { overflow-x: auto; }
+  .relic-rewards-table { min-width: 320px; }
+
+  .riven-form-row { flex-direction: column; }
+  .riven-form-row label { min-width: 0; }
+  .riven-stat-row { flex-wrap: wrap; }
+  .riven-stat-nombre { flex: 1 1 100%; }
+  .riven-form input, .riven-form select { font-size: 16px; }
+
+  .pagination { gap: 0.6rem; padding: 1.5rem 0.5rem 0.5rem; }
+  .page-numbers { gap: 0.35rem; justify-content: center; }
+  .page-btn { font-size: 0.55rem; padding: 0.5rem 0.65rem; }
 }

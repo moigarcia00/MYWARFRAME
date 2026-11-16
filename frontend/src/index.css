@@ -624,8 +624,7 @@ main { position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; paddi
 .helmet-btn:hover { border-color: #7c6fd6; color: #a99cf0; background: rgba(124,111,214,0.08); }
 
 .helminto-btn:hover { border-color: #6fe3a3; color: #6fe3a3; background: rgba(111,227,163,0.08); }
-.personaje .skin-btn.helminto-on,
-.personaje .skin-btn.helminto-on:hover { border-color: #6fe3a3; color: #6fe3a3; background: rgba(111,227,163,0.1); }
+.helminto-btn.helminto-on { border-color: #6fe3a3; color: #6fe3a3; background: rgba(111,227,163,0.1); }
 .helminto-check { font-weight: 700; }
 
 /* ══════════════════════════════════════════

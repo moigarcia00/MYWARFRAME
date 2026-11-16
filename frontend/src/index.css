@@ -1047,6 +1047,8 @@ footer {
 }
 
 @media (hover: none), (pointer: coarse), (max-width: 600px) {
+  * { -webkit-tap-highlight-color: transparent; }
+
   .personaje:not(.desbloqueado):hover {
     opacity: 0.42; transform: none; border-color: rgba(0,229,255,0.08);
   }

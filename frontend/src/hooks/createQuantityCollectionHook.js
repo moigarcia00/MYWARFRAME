@@ -17,7 +17,7 @@ function save(key, value) {
   }
 }
 
-const MAX_CANTIDAD = 999;
+const MAX_CANTIDAD = 9999;
 
 /**
  * Fábrica de hooks de colección basada en CANTIDAD en vez de un simple

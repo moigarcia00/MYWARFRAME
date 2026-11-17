@@ -6,9 +6,15 @@ import { useCallback, useRef } from 'react';
 // más). Empieza tras un pequeño retraso y luego repite a intervalo fijo.
 // Funciona con ratón y con touch, y para en cuanto se suelta/sale el
 // puntero o se desmonta el componente.
+//
+// Se usan Pointer Events (onPointerDown) en lugar de mouse + touch: en
+// móvil, un toque dispara touchstart Y DESPUÉS un mousedown "simulado",
+// así que escuchar ambos sumaba dos veces por pulsación. Los Pointer
+// Events unifican ratón, dedo y lápiz en un único evento.
 export function useHoldRepeat(callback, { delay = 400, interval = 90 } = {}) {
   const timeoutRef = useRef(null);
   const intervalRef = useRef(null);
+  const lastPointerRef = useRef(0);
 
   const clear = useCallback(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -19,9 +25,9 @@ export function useHoldRepeat(callback, { delay = 400, interval = 90 } = {}) {
 
   const start = useCallback(
     (e) => {
-      // Evita que el evento touch dispare también un click sintético
-      // (que duplicaría el primer paso).
+      if (e.button > 0) return; // ignora botón derecho/central del ratón
       if (e?.cancelable) e.preventDefault();
+      lastPointerRef.current = Date.now();
       callback();
       clear();
       timeoutRef.current = setTimeout(() => {
@@ -32,18 +38,16 @@ export function useHoldRepeat(callback, { delay = 400, interval = 90 } = {}) {
   );
 
   return {
-    onMouseDown: start,
-    onMouseUp: clear,
-    onMouseLeave: clear,
-    onTouchStart: start,
-    onTouchEnd: clear,
-    onTouchCancel: clear,
-    // event.detail es 0 en clics disparados por teclado (Enter/Espacio) o
-    // programáticamente — así el botón sigue siendo accesible por teclado
-    // sin duplicar el paso en un clic de ratón normal (que ya se dispara
-    // en onMouseDown).
+    onPointerDown: start,
+    onPointerUp: clear,
+    onPointerLeave: clear,
+    onPointerCancel: clear,
+    // El click sigue existiendo (y también lo genera el teclado con
+    // detail === 0). Se ignora cualquier click que venga poco después de
+    // un pointerdown para no duplicar el paso; el teclado no pasa por
+    // pointerdown, así que sigue funcionando.
     onClick: (e) => {
-      if (e.detail === 0) callback();
+      if (e.detail === 0 && Date.now() - lastPointerRef.current > 500) callback();
     }
   };
 }

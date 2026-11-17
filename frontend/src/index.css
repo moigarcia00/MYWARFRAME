@@ -270,7 +270,7 @@ header h1 {
   font-family: 'Orbitron', monospace; font-size: 0.85rem; font-weight: 700; color: var(--energy);
 }
 .qty-input {
-  width: 4rem; text-align: center;
+  width: 4.2rem; text-align: center;
   font-family: 'Orbitron', monospace; font-size: 0.85rem; font-weight: 700; color: var(--energy);
   background: rgba(0,229,255,0.05); border: 1px solid var(--energy-dim); border-radius: 3px;
   padding: 0.2rem 0.1rem; outline: none;
@@ -1012,13 +1012,13 @@ footer {
   .relic-icon-wrap { height: 90px; }
   .nombre { font-size: 0.7rem; padding: 0.35rem 0.4rem 0.15rem; }
   .qty-btn, .maestria-btn { width: 28px; height: 28px; }
-  .qty-input { font-size: 16px; width: 3.6rem; }
+  .qty-input { font-size: 16px; width: 4rem; }
   .relic-qty-row .qty-input { width: 3.6rem; }
 
   .personaje .qty-wrap { padding: 0 0.2rem 0.5rem; margin-top: auto; }
   .personaje .qty-row { gap: 0.2rem; }
   .personaje .qty-btn { display: none; }
-  .personaje .qty-input { width: 3rem; font-size: 16px; padding: 0.1rem 0; }
+  .personaje .qty-input { width: 3.4rem; font-size: 16px; padding: 0.1rem 0; }
   .card-badge { width: 20px; height: 20px; font-size: 0.6rem; }
   .modal-close { width: 40px; height: 40px; font-size: 1.3rem; top: 0.6rem; right: 0.6rem; }
   .letra-heading::before { font-size: 1.8rem; }

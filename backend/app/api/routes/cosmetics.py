@@ -4,33 +4,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_session
 from app.core.warframe_family import family_key_for, split_variant
-from app.models import Cosmetic, WarframeVariant
-from app.schemas.cosmetic import CosmeticItem, WarframeCosmetics
+from app.models import Helmet, Skin, WarframeVariant
+from app.schemas.cosmetic import CosmeticItem, WarframeHelmets, WarframeSkins
 
 router = APIRouter(tags=["cosmetics"])
-
-
-def _resolve_image(image_local: str | None, image_cdn: str | None) -> str | None:
-    return image_local or image_cdn
-
-
-def _build_items(rows: list[Cosmetic]) -> tuple[list[CosmeticItem], list[CosmeticItem]]:
-    skins: list[CosmeticItem] = []
-    helmets: list[CosmeticItem] = []
-
-    for row in rows:
-        item = CosmeticItem(
-            id=row.id,
-            name=row.name,
-            image=_resolve_image(row.image_local, row.image_cdn),
-            description=row.description or "",
-        )
-        if row.kind == "skin":
-            skins.append(item)
-        else:
-            helmets.append(item)
-
-    return skins, helmets
 
 
 async def _resolve_identity(
@@ -57,34 +34,61 @@ async def _resolve_identity(
     return family_key_for(base), variant, requested, None
 
 
-@router.get("/cosmetics/{warframe}", response_model=WarframeCosmetics)
-async def get_warframe_cosmetics(
+async def _query_items(
+    session: AsyncSession, model: type[Skin] | type[Helmet], family_key: str, variant: str
+) -> list[CosmeticItem]:
+    result = await session.execute(
+        select(model)
+        .where(model.family_key == family_key)
+        .where(model.variant.in_(("shared", variant)))
+        .order_by(model.name)
+    )
+    return [
+        CosmeticItem(
+            id=row.id,
+            name=row.name,
+            image=row.image,
+            description=row.description or "",
+        )
+        for row in result.scalars().all()
+    ]
+
+
+@router.get("/skins/{warframe}", response_model=WarframeSkins)
+async def get_warframe_skins(
     warframe: str,
     session: AsyncSession = Depends(get_session),
-) -> WarframeCosmetics:
+) -> WarframeSkins:
     requested = warframe.strip()
     family_key, variant, identity_name, identity_unique = await _resolve_identity(
         session, requested
     )
+    items = await _query_items(session, Skin, family_key, variant)
 
-    # Se devuelven las skins compartidas por la familia más las exclusivas de la
-    # variante pedida. Las skins de la base se guardan como 'shared', así que un
-    # Prime/Umbra también las recibe.
-    result = await session.execute(
-        select(Cosmetic)
-        .where(Cosmetic.family_key == family_key)
-        .where(Cosmetic.variant.in_(("shared", variant)))
-        .order_by(Cosmetic.kind, Cosmetic.name)
-    )
-    rows = list(result.scalars().all())
-
-    skins, helmets = _build_items(rows)
-
-    return WarframeCosmetics(
+    return WarframeSkins(
         warframe=identity_name,
         family_key=family_key,
         variant=variant,
         warframe_unique_name=identity_unique,
-        skins=skins,
-        helmets=helmets,
+        skins=items,
+    )
+
+
+@router.get("/helmets/{warframe}", response_model=WarframeHelmets)
+async def get_warframe_helmets(
+    warframe: str,
+    session: AsyncSession = Depends(get_session),
+) -> WarframeHelmets:
+    requested = warframe.strip()
+    family_key, variant, identity_name, identity_unique = await _resolve_identity(
+        session, requested
+    )
+    items = await _query_items(session, Helmet, family_key, variant)
+
+    return WarframeHelmets(
+        warframe=identity_name,
+        family_key=family_key,
+        variant=variant,
+        warframe_unique_name=identity_unique,
+        helmets=items,
     )

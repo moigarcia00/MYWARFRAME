@@ -15,16 +15,14 @@ function buildRows(catalog, kind) {
     for (const item of items) {
       if (item.nombre === 'Original') continue;
 
-      const img = (item.img || '').trim();
-      const isRemote = /^https?:\/\//i.test(img);
+      const image = (item.img || '').trim() || null;
       const key = `${warframe}|${kind}|${item.nombre}`;
 
       rows.set(key, {
         warframe,
         kind,
         name: item.nombre,
-        image_local: img && !isRemote ? img : null,
-        image_cdn: isRemote ? img : null,
+        image,
         description: item.desc || '',
       });
     }

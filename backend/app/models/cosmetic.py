@@ -14,25 +14,13 @@ from sqlalchemy.orm import Mapped, mapped_column
 from app.models.base import Base
 
 
-class Cosmetic(Base):
-    __tablename__ = "cosmetics"
-    __table_args__ = (
-        CheckConstraint("kind IN ('skin', 'helmet')", name="cosmetics_kind_check"),
-        CheckConstraint(
-            "variant IN ('shared', 'base', 'prime', 'umbra')",
-            name="cosmetics_variant_check",
-        ),
-        UniqueConstraint("family_key", "variant", "kind", "name", name="cosmetics_unique"),
-    )
-
+class _CosmeticColumns:
     id: Mapped[int] = mapped_column(BigInteger, Identity(always=True), primary_key=True)
     family_key: Mapped[str] = mapped_column(Text, index=True)
     variant: Mapped[str] = mapped_column(Text, default="shared")
-    kind: Mapped[str] = mapped_column(Text)
     name: Mapped[str] = mapped_column(Text)
     unique_name: Mapped[str | None] = mapped_column(Text, index=True)
-    image_local: Mapped[str | None] = mapped_column(Text)
-    image_cdn: Mapped[str | None] = mapped_column(Text)
+    image: Mapped[str | None] = mapped_column(Text)
     description: Mapped[str] = mapped_column(Text, default="")
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
@@ -40,3 +28,33 @@ class Cosmetic(Base):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
+
+
+class Skin(_CosmeticColumns, Base):
+    __tablename__ = "skins"
+    __table_args__ = (
+        CheckConstraint(
+            "variant IN ('shared', 'base', 'prime', 'umbra')",
+            name="skins_variant_check",
+        ),
+        UniqueConstraint("family_key", "variant", "name", name="skins_unique"),
+    )
+
+    @property
+    def kind(self) -> str:
+        return "skin"
+
+
+class Helmet(_CosmeticColumns, Base):
+    __tablename__ = "helmets"
+    __table_args__ = (
+        CheckConstraint(
+            "variant IN ('shared', 'base', 'prime', 'umbra')",
+            name="helmets_variant_check",
+        ),
+        UniqueConstraint("family_key", "variant", "name", name="helmets_unique"),
+    )
+
+    @property
+    def kind(self) -> str:
+        return "helmet"

@@ -10,7 +10,7 @@ export default function PageLayout({
   loading = false,
   error = null,
   onReload,
-  footerText = 'Datos proporcionados por la API de Warframe Community Developers (WFCD)',
+  footerText = 'Proyecto fan no oficial, sin ánimo de lucro y no afiliado a Digital Extremes. Warframe y sus imágenes son propiedad de Digital Extremes Ltd. Datos: Warframe Community Developers (WFCD).',
   showFooter = true,
   children
 }) {

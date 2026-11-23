@@ -13,5 +13,11 @@ class WarframeCosmetics(BaseModel):
     family_key: str
     variant: str
     warframe_unique_name: str | None = None
+
+
+class WarframeSkins(WarframeCosmetics):
     skins: list[CosmeticItem]
+
+
+class WarframeHelmets(WarframeCosmetics):
     helmets: list[CosmeticItem]

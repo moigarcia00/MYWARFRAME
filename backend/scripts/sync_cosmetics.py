@@ -28,7 +28,7 @@ import httpx
 from sqlalchemy import select
 
 from app.core.database import async_session_factory, engine
-from app.models import Cosmetic, WarframeVariant
+from app.models import Helmet, Skin, WarframeVariant
 
 SKINS_URL = (
     "https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Skins.json"
@@ -61,6 +61,12 @@ def classify(name: str) -> tuple[str | None, str | None, bool]:
     if text.endswith(" helmet"):
         return "helmet", text[: -len(" helmet")].strip(), arcane
     return None, None, arcane
+
+
+async def load_cosmetics(session) -> list[Skin | Helmet]:
+    skins = (await session.execute(select(Skin))).scalars().all()
+    helmets = (await session.execute(select(Helmet))).scalars().all()
+    return [*skins, *helmets]
 
 
 def catalog_core(name: str, kind: str) -> str:
@@ -222,9 +228,10 @@ async def watch(save: bool) -> None:
     async with async_session_factory() as session:
         linked_skins = {
             value
+            for model in (Skin, Helmet)
             for value in (
                 await session.execute(
-                    select(Cosmetic.unique_name).where(Cosmetic.unique_name.is_not(None))
+                    select(model.unique_name).where(model.unique_name.is_not(None))
                 )
             ).scalars()
         }
@@ -290,7 +297,7 @@ async def enrich() -> None:
 
     async with async_session_factory() as session:
         families = await load_families(session)
-        cosmetics = (await session.execute(select(Cosmetic))).scalars().all()
+        cosmetics = await load_cosmetics(session)
         entries_by_family = {
             family_key: build_entries(skins, base)
             for family_key, base in families.items()
@@ -344,9 +351,9 @@ async def report(details: bool, family_filter: str | None) -> None:
     async with async_session_factory() as session:
         variants = (await session.execute(select(WarframeVariant))).scalars().all()
         families = await load_families(session)
-        cosmetics = (await session.execute(select(Cosmetic))).scalars().all()
+        cosmetics = await load_cosmetics(session)
 
-        by_family: dict[str, list[Cosmetic]] = {}
+        by_family: dict[str, list[Skin | Helmet]] = {}
         for cosmetic in cosmetics:
             by_family.setdefault(cosmetic.family_key, []).append(cosmetic)
 

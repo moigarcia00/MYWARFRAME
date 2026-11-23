@@ -101,7 +101,7 @@ export default function ReliquiasPage({ activeTab, onSelectTab }) {
       loading={loading}
       error={error}
       onReload={reload}
-      footerText="Datos de reliquias proporcionados por WFInfo, vía la API de Warframe Community Developers (WFCD)"
+      footerText="Proyecto fan no oficial, sin ánimo de lucro y no afiliado a Digital Extremes. Warframe y sus imágenes son propiedad de Digital Extremes Ltd. Datos de reliquias: WFInfo vía WFCD."
     >
 
       <div className="controls-wrap">

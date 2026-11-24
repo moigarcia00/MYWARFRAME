@@ -38,6 +38,8 @@ desktop.ini
 
 # Notas internas del proyecto (no se publican)
 AGENTS.md
+goal.md
+task/
 
 # Python / backend
 venv/

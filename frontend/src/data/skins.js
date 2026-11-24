@@ -1,23 +1,14 @@
 /* ══════════════════════════════════════════════════════
-   SKINS.JS — lista de skins por warframe (catálogo manual)
+   SKINS.JS — lista de skins por warframe (catálogo local)
    ══════════════════════════════════════════════════════
-
-   Este catálogo es temporal: cuando `WarframesPage` pida las skins al
-   backend (`GET /cosmetics/{warframe}`), los nombres y las imágenes
-   vendrán de la base de datos y este archivo se podrá borrar.
 
    Cómo rellenar cada entrada:
      { nombre: "Graxx", img: "https://.../AshGraxx.webp", desc: "..." }
 
    - nombre : ya viene puesto, no lo toques (es el que se muestra en el selector).
-   - img    : URL completa de la imagen de la skin. Puedes usar:
-                · el CDN de WFCD o cualquier URL externa;
-                · la URL que devuelva el backend FastAPI cuando sirva las
-                  imágenes (campo `image` del endpoint de cosméticos).
-              Ya no se usan carpetas locales `img/skins/`: se borraron y las
-              imágenes pasarán al backend. Si la dejas en "", el selector
-              muestra el icono de placeholder y la tarjeta usa la imagen base
-              del warframe como respaldo.
+   - img    : URL completa de la imagen de la skin (por ejemplo del CDN de
+              WFCD). Si la dejas en "", el selector muestra el icono de
+              placeholder y la tarjeta usa la imagen base del warframe.
    - desc   : descripción en español que se muestra en el panel de detalle
               al elegir esa skin. Si la dejas en "", se usa un texto genérico.
 

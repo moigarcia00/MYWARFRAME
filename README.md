@@ -30,7 +30,6 @@ MyWarframe nace como un proyecto personal de la comunidad para resolver algo sen
 - [Vite 5](https://vitejs.dev/)
 - [Axios](https://axios-http.com/)
 - ESLint 10
-- [FastAPI](https://fastapi.tiangolo.com/) (backend en desarrollo)
 
 ## Requisitos
 
@@ -62,22 +61,6 @@ npm run lint                # Revisa el código con ESLint
 npm run generate:mod-stats  # Regenera las estadísticas ES de mods
 ```
 
-## Backend
-
-El backend vive en `backend/` y está en desarrollo. Instrucciones detalladas en
-[`backend/README.md`](backend/README.md).
-
-```bash
-cd backend
-py -m venv venv
-# Windows PowerShell: .\venv\Scripts\Activate.ps1
-# Git Bash: source venv/Scripts/activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
-La documentación interactiva queda en <http://127.0.0.1:8000/docs>.
-
 ## Estructura del proyecto
 
 ```
@@ -91,14 +74,6 @@ frontend/
     utils/       Utilidades (backup, normalización, claves de almacenamiento...)
   img/           Recursos estáticos: logo, skins y cascos
   scripts/       Scripts de generación de datos
-backend/
-  app/
-    main.py      Arranque de FastAPI y CORS
-    api/routes/  Endpoints
-    core/        Configuración y utilidades
-    services/    WFCD, warframe.market y normalización
-    schemas/     Modelos de respuesta
-  requirements.txt
 ```
 
 ## Datos y créditos
@@ -114,4 +89,4 @@ Proyecto fan no oficial y sin ánimo de lucro, no afiliado a Digital Extremes. W
 
 ## Estado
 
-En desarrollo activo. El frontend funciona de forma independiente contra la API de WFCD y el backend FastAPI está empezando a montarse para normalizar datos y servir catálogos de skins y cascos.
+En desarrollo activo. El proyecto funciona solo con frontend: consulta la API pública de WFCD y mantiene los catálogos de skins y cascos en archivos locales, sin necesidad de servidor propio.

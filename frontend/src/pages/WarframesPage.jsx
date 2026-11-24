@@ -18,14 +18,6 @@ import { maxMasteryFor } from '../data/translations';
 
 const DEFAULT_LIST = [{ nombre: 'Original', img: null, desc: '' }];
 
-function getSkinList(item) {
-  return SKINS[item.name] || DEFAULT_LIST;
-}
-
-function getHelmetList(item) {
-  return HELMETS[item.name] || DEFAULT_LIST;
-}
-
 function findOption(list, nombre) {
   return list.find((o) => o.nombre === nombre) || list[0];
 }
@@ -97,6 +89,14 @@ export default function WarframesPage({ activeTab, onSelectTab }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function getSkinList(item) {
+    return SKINS[item.name] || DEFAULT_LIST;
+  }
+
+  function getHelmetList(item) {
+    return HELMETS[item.name] || DEFAULT_LIST;
+  }
+
   function displayImgFor(item) {
     const skinNombre = collection.skinActiva[item.id] || 'Original';
     const skin = findOption(getSkinList(item), skinNombre);
@@ -104,16 +104,11 @@ export default function WarframesPage({ activeTab, onSelectTab }) {
   }
 
   function openMostrar(item) {
-    const skinNombre = collection.skinActiva[item.id] || 'Original';
-    const skin = findOption(getSkinList(item), skinNombre);
-    const helmetNombre = collection.helmetActivo[item.id] || 'Original';
-    setDetail({
-      item,
-      img: skin.img || imageUrl(item),
-      skinNombre,
-      skinDesc: skin.desc,
-      helmetNombre
-    });
+    setDetail({ item });
+  }
+
+  function openPicker(type, item) {
+    setPicker({ type, item });
   }
 
   function pickerOptionsFor(type, item) {
@@ -124,6 +119,19 @@ export default function WarframesPage({ activeTab, onSelectTab }) {
       opt.nombre === 'Original' && !opt.img ? { ...opt, img: imageUrl(item) } : opt
     );
   }
+
+  const detailData = detail?.item
+    ? {
+        item: detail.item,
+        img: displayImgFor(detail.item),
+        skinNombre: collection.skinActiva[detail.item.id] || 'Original',
+        skinDesc: findOption(
+          getSkinList(detail.item),
+          collection.skinActiva[detail.item.id] || 'Original'
+        ).desc,
+        helmetNombre: collection.helmetActivo[detail.item.id] || 'Original'
+      }
+    : null;
 
   return (
     <PageLayout
@@ -170,9 +178,9 @@ export default function WarframesPage({ activeTab, onSelectTab }) {
               obtenido={collection.isObtenido(item.id)}
               onToggleObtenido={collection.toggleObtenido}
               skinNombre={collection.skinActiva[item.id] || 'Original'}
-              onOpenSkinPicker={(it) => setPicker({ type: 'skin', item: it })}
+              onOpenSkinPicker={(it) => openPicker('skin', it)}
               helmetNombre={collection.helmetActivo[item.id] || 'Original'}
-              onOpenHelmetPicker={(it) => setPicker({ type: 'helmet', item: it })}
+              onOpenHelmetPicker={(it) => openPicker('helmet', it)}
               mastery={collection.maestrias[item.id] || 0}
               onMasteryChange={collection.setMaestria}
               helminto={helminthLog.isHelminto(item.id)}
@@ -184,7 +192,7 @@ export default function WarframesPage({ activeTab, onSelectTab }) {
       </main>
 
       <WarframeModal
-        detail={detail}
+        detail={detailData}
         maestria={detail ? collection.maestrias[detail.item.id] || 0 : 0}
         onClose={() => setDetail(null)}
       />

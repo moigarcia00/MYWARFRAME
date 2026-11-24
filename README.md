@@ -39,8 +39,6 @@ MyWarframe nace como un proyecto personal de la comunidad para resolver algo sen
 ## Puesta en marcha
 
 ```bash
-cd frontend
-
 # 1. Instalar dependencias
 npm install
 
@@ -54,7 +52,7 @@ npm run build
 npm run preview
 ```
 
-Otros comandos (desde `frontend/`):
+Otros comandos (desde la raíz del proyecto):
 
 ```bash
 npm run lint                # Revisa el código con ESLint
@@ -64,16 +62,15 @@ npm run generate:mod-stats  # Regenera las estadísticas ES de mods
 ## Estructura del proyecto
 
 ```
-frontend/
-  src/
-    api/         Peticiones a la API de WFCD y configuración central
-    components/  Componentes reutilizables (cartas, modales, paginación...)
-    data/        Datos locales (traducciones, skins, estadísticas de mods)
-    hooks/       Lógica de datos, colecciones y persistencia
-    pages/       Una página por sección
-    utils/       Utilidades (backup, normalización, claves de almacenamiento...)
-  img/           Recursos estáticos: logo, skins y cascos
-  scripts/       Scripts de generación de datos
+src/
+  api/         Peticiones a la API de WFCD y configuración central
+  components/  Componentes reutilizables (cartas, modales, paginación...)
+  data/        Datos locales (traducciones, skins, estadísticas de mods)
+  hooks/       Lógica de datos, colecciones y persistencia
+  pages/       Una página por sección
+  utils/       Utilidades (backup, normalización, claves de almacenamiento...)
+img/           Recursos estáticos: logo, skins y cascos
+scripts/       Scripts de generación de datos
 ```
 
 ## Datos y créditos
